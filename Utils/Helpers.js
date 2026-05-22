@@ -61,46 +61,6 @@ const getVideoDuration = (filePath) => {
   });
 };
 
-// const monitorFFmpegVideoProgress = async (
-//   pipePath,
-//   totalDuration,
-//   folderId,
-//   ffmpeg
-// ) => {
-//   const rl = readline.createInterface({
-//     input: fs.createReadStream(pipePath),
-//     crlfDelay: Infinity,
-//   });
-
-//   let progressData = {};
-
-//   rl.on("line", async (line) => {
-//     const [key, value] = line.split("=");
-
-//     if (key) progressData[key.trim()] = value?.trim();
-
-//     if (key === "progress" && value === "continue") {
-//       if (progressData.out_time) {
-//         const progressSeconds = parseDuration(progressData.out_time);
-//         const percent = Math.floor((progressSeconds / totalDuration) * 100);
-//         // await updateProgress(folderId, percent, "processing");
-//       }
-//       progressData = {};
-//     }
-
-//     if (key === "progress" && value === "end") {
-//       console.log("FFmpeg processing completed.");
-
-//       rl.close();
-//     }
-//   });
-
-//   ffmpeg.on("close", () => {
-//     console.log("FFmpeg video processed successfully.");
-//     fs.unlinkSync(pipePath);
-//   });
-// };
-
 function spawnFFmpeg(label, args, totalSecs, onPct) {
   const proc = spawn("ffmpeg", args, { stdio: ["ignore", "ignore", "pipe"] });
 
