@@ -16,7 +16,6 @@ const {
   updateProgress,
   spawnFFmpeg,
 } = require("./Utils/Helpers");
-const axios = require("axios");
 
 const s3Client = new S3Client({
   region: process.env.REGION,
